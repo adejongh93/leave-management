@@ -2,10 +2,10 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Editing @Model.LeaveType.Name for @Model.Employee.Lastname, @Model.Employee.Firstname</h1>
+    <h1>Editing @Model.LeaveType.Name Allocation for @Model.Employee.Lastname, @Model.Employee.Firstname  </h1>
+
 
 <hr />
 <div class="row">
@@ -27,6 +27,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-outline-secondary btn-block" asp-action="Details" asp-route-id="@Model.EmployeeId">Back to Details</a>
 </div>
 

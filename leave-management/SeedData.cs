@@ -9,7 +9,8 @@ namespace leave_management
 {
     public static class SeedData
     {
-        public static void Seed(UserManager<Employee> userManager, RoleManager<IdentityRole> roleManager)
+        public static void Seed(UserManager<Employee> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
             SeedUsers(userManager);
@@ -17,6 +18,8 @@ namespace leave_management
 
         private static void SeedUsers(UserManager<Employee> userManager)
         {
+            var users = userManager.GetUsersInRoleAsync("Employee").Result;
+
             if(userManager.FindByNameAsync("admin@localhost.com").Result == null)
             {
                 var user = new Employee
@@ -40,7 +43,7 @@ namespace leave_management
                 {
                     Name = "Administrator"
                 };
-                roleManager.CreateAsync(role).Wait();
+                var result = roleManager.CreateAsync(role).Result;
             }
 
             if (!roleManager.RoleExistsAsync("Employee").Result)
@@ -49,7 +52,7 @@ namespace leave_management
                 {
                     Name = "Employee"
                 };
-                roleManager.CreateAsync(role).Wait();
+                var result = roleManager.CreateAsync(role).Result;
             }
         }
     }
